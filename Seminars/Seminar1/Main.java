@@ -3,8 +3,10 @@ package Seminar1;
 import Seminar1.Coordinate.Coordinate;
 import Seminar1.Enum.Names;
 import Seminar1.Hero_Classes.*;
+import Seminar1.Interface.Step;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -16,9 +18,20 @@ public class Main {
         System.out.println( "\nДобро:" );
         dobro.forEach( u -> System.out.println( u.getInfoCoord() ) );
         Unit sniper = new Sniper(getNames(),0, 0);
+        Unit crossbowman = new Crossbowman(getNames(),5,5);
         System.out.println( "\nЗло:" );
         zlo.forEach( u -> System.out.println( u.getInfoCoord() ) );
         System.out.println();
+        List<Unit> all = new ArrayList<>();
+        all.addAll(dobro);
+        all.addAll(zlo);
+        all.sort(new Comparator<Unit>() {
+            @Override
+            public int compare(Unit o1, Unit o2) {
+                return o2.getInitiative() - o1.getInitiative();
+            }
+        });
+        all.forEach(n-> System.out.println(n.toString()));
         Coordinate dist = new Coordinate();
 //        int dist = dobro(0)
         Unit hero1 = new Magician(getNames(), 0, 0);
@@ -30,6 +43,10 @@ public class Main {
         System.out.println("");
         System.out.println("Минимальная дистанция у 0его юнита добра по отношению к злу к");
         System.out.println(dobro.get(0).nearTarget(dobro.get(0), zlo));
+        System.out.println(sniper.nearTarget(dobro.get(5), zlo));
+        System.out.println(sniper.Step((ArrayList<Unit>) zlo));
+        System.out.println(crossbowman.Step((ArrayList<Unit>) zlo));
+
 
 
 
@@ -95,6 +112,7 @@ public class Main {
 
 
         }
+
         return list;
     }
     public static List<Unit> generateHeroesZlo(int count) {
@@ -125,6 +143,7 @@ public class Main {
             }
 
         }
+
         return list;
  }}
 

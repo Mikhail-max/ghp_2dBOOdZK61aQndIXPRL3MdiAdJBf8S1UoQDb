@@ -3,11 +3,11 @@ package Seminar1.Coordinate;
 public class Coordinate {
     int x,y;
 
-    public int getX() {
+    public int getXposition() {
         return x;
     }
 
-    public int getY() {
+    public int getYposition() {
         return y;
     }
 

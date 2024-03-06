@@ -5,9 +5,9 @@ import Seminar1.Hero_Classes.Unit;
 import java.util.ArrayList;
 
 public interface Step {
-    void Step();
 
-    char Step(ArrayList<Unit> targetTeam);
+
+    void Step(ArrayList<Unit> targetTeam);
 
 
 }

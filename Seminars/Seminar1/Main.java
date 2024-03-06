@@ -25,27 +25,22 @@ public class Main {
         List<Unit> all = new ArrayList<>();
         all.addAll(dobro);
         all.addAll(zlo);
-        all.sort(new Comparator<Unit>() {
-            @Override
-            public int compare(Unit o1, Unit o2) {
-                return o2.getInitiative() - o1.getInitiative();
+        all.sort((o1, o2) -> o2.getInitiative() - o1.getInitiative() );
+        for (Unit element:all){
+            if (dobro.contains(element)){
+                element.Step((ArrayList<Unit>) zlo);
+            }else {
+                element.Step((ArrayList<Unit>) dobro);
             }
-        });
-        all.forEach(n-> System.out.println(n.toString()));
-        Coordinate dist = new Coordinate();
-//        int dist = dobro(0)
-        Unit hero1 = new Magician(getNames(), 0, 0);
-        System.out.println(dobro.get(0).getX());
-        dist.distance(dobro.get(0).getX(), dobro.get(0).getY(),
-                dobro.get(5).getX(),dobro.get(5).getY());
-        System.out.println(dist.distance(dobro.get(0).getX(), dobro.get(0).getY(),
-                zlo.get(0).getX(),zlo.get(0).getY()));
-        System.out.println("");
-        System.out.println("Минимальная дистанция у 0его юнита добра по отношению к злу к");
-        System.out.println(dobro.get(0).nearTarget(dobro.get(0), zlo));
-        System.out.println(sniper.nearTarget(dobro.get(5), zlo));
-        System.out.println(sniper.Step((ArrayList<Unit>) zlo));
-        System.out.println(crossbowman.Step((ArrayList<Unit>) zlo));
+        }
+
+
+//        all.forEach(n-> System.out.println(n.toString()));
+//        System.out.println(" ");
+//        all.forEach(n-> System.out.println(n.toString()));
+//        System.out.println(" ");
+//        System.out.println(sniper.Step((ArrayList<Unit>) zlo));
+//        System.out.println(crossbowman.Step((ArrayList<Unit>) zlo));
 
 
 
@@ -61,19 +56,6 @@ public class Main {
         return String.valueOf(Names.values()[new Random().nextInt(Names.values().length-1)]);
 
     }
-//    public Integer nearTarget(Unit sniper, List<Unit> zlo) {
-//        int distmin = 0;
-//        int dist = 0;
-//        Coordinate distance = new Coordinate();
-//        for (int i = 0; i < zlo.size(); i++) {
-//            dist = distance.distance(sniper.getX(), sniper.getY(), zlo.get(i).getX(), zlo.get(i).getY());
-//            if (distmin <= dist){
-//                distmin = dist;
-//            }
-//
-//        }
-//        return distmin;
-//    }
 
 
 
@@ -88,7 +70,6 @@ public class Main {
             switch( new Random().nextInt( 7 ) ) {
                 case 0:
                     list.add( new Peasant(getNames(), x = i, 0 ) );
-                    System.out.println("Сука х равен " + x);
 
                     break;
                 case 1:

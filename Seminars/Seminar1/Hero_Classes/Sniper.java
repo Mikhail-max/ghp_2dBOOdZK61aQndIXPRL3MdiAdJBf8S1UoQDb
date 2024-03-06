@@ -31,20 +31,13 @@ public class Sniper  extends Unit implements Step {
     }
 
 
-    @Override
-    public void Step() {
 
-    }
 
     @Override
-    public char Step(ArrayList<Unit> targetTeam) {
+    public void Step(ArrayList<Unit> targetTeam) {
         if (Dead(Sniper.this)==true){
-            System.out.printf("\n%s готов к действиям\n", getName());
             if(Sniper.this.getArrows() > 0 ){
-                System.out.printf("%s готов к стрельбе, стрел еще %d\n", getName(), getArrows());
-                System.out.printf("%s атакует %s\n", getName(), this.nearTarget(Sniper.this, targetTeam).getName());
-                Sniper.this.Attack(this.nearTarget(Sniper.this, targetTeam));
-                System.out.println(this.nearTarget(Sniper.this, targetTeam).getInfo());
+                Sniper.this.Attack(this.nearTarget(targetTeam));
                 this.arrows -= 1;
                 Sniper.this.setArrows(this.arrows);
                 System.out.printf("Cтрел осталось %d\n", getArrows());
@@ -54,7 +47,6 @@ public class Sniper  extends Unit implements Step {
         }
 
 
-        return 0;
     }
 
 }

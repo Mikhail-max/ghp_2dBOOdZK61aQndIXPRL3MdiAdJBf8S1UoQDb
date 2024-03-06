@@ -1,7 +1,20 @@
 package Seminar1.Coordinate;
 
+import Seminar1.Hero_Classes.Unit;
+import Seminar1.Main;
+
+import javax.swing.text.Position;
+
 public class Coordinate {
     int x,y;
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public int getXposition() {
         return x;
@@ -20,10 +33,19 @@ public class Coordinate {
         this.y = y;
     }
 
-    public Integer distance(int x1, int y1, int x2, int y2){
-        int dist;
-        return dist = (int) (Math. sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
+    public Double distance(double x1, double y1, double x2, double y2){
+        double dist;
+        return dist = (double) (Math. sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
 
+    }
+    public Double getDistamce(Unit target){
+        double targetDistance = 0;
+        return targetDistance = Math.sqrt(Math.pow(target.getCoordinate().getXposition() - this.getXposition(), 2))
+                + Math.pow(target.getCoordinate().getYposition() - this.getXposition(), 2);
+
+    }
+    public Coordinate getDiff (Coordinate targetPos){
+        return  new Coordinate(x - targetPos.getXposition(),y - targetPos.getYposition());
     }
 
 }

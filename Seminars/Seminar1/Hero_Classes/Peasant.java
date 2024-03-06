@@ -1,8 +1,10 @@
 package Seminar1.Hero_Classes;
 
+import Seminar1.Interface.Step;
+
 import java.util.ArrayList;
 
-public class Peasant extends Unit{
+public class Peasant extends Warriors implements Step {
 
     public Peasant(String name,int x, int y, int initiative, int health, int strength, int recovery, int protection, int intelligence, int vitality, int damage) {
         super(name, x, y, initiative, health, strength, recovery, protection, intelligence, vitality, damage);}
@@ -10,11 +12,7 @@ public class Peasant extends Unit{
             super(name, x, y, 0, 100, 10, 10, 3, 3, 20, 20);
     }
 
-    @Override
-    public char Step(ArrayList<Unit> targetTeam) {
 
-        return 0;
-    }
 
     public void plow() {
         System.out.println(this.name + " is plowing the field.");
@@ -24,7 +22,7 @@ public class Peasant extends Unit{
     }
 
     @Override
-    public void Step() {
-
+    public void Step(ArrayList<Unit> targetTeam) {
+        super.Step(targetTeam);
     }
 }

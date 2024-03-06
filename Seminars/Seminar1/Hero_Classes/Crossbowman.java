@@ -17,14 +17,10 @@ public class Crossbowman extends Unit implements Step {
     }
 
     @Override
-    public char Step(ArrayList<Unit> targetTeam) {
+    public void Step(ArrayList<Unit> targetTeam) {
         if (Dead(Crossbowman.this) == true) {
-            System.out.printf("\n%s готов к действиям\n", getName());
             if (Crossbowman.this.getArrows() > 0) {
-                System.out.printf("%s готов к стрельбе, стрел еще %d\n", getName(), getArrows());
-                System.out.printf("%s атакует %s\n", getName(), this.nearTarget(Crossbowman.this, targetTeam).getName());
-                Crossbowman.this.Attack(this.nearTarget(Crossbowman.this, targetTeam));
-                System.out.println(this.nearTarget(Crossbowman.this, targetTeam).getInfo());
+                Crossbowman.this.Attack(this.nearTarget(targetTeam));
                 this.arrows -= 1;
                 Crossbowman.this.setArrows(this.arrows);
                 System.out.printf("Cтрел осталось %d\n", getArrows());
@@ -32,7 +28,7 @@ public class Crossbowman extends Unit implements Step {
                 System.out.println("Нет стрел\n");
             }
         }
-        return 0;
+
     }
 
 
@@ -49,11 +45,7 @@ public class Crossbowman extends Unit implements Step {
         System.out.println(this.name + " is firing their crossbow.");
     }
 
-    @Override
-    public void Step() {
 
-
-    }
 
 
     public int getArrows() {

@@ -3,6 +3,7 @@ package Seminar1.Hero_Classes;
 import Seminar1.Coordinate.Coordinate;
 import Seminar1.Interface.Step;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Unit implements Step {
@@ -11,6 +12,15 @@ public abstract class Unit implements Step {
     protected Coordinate coordinate;
     int x;
     int y;
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     int initiative;
 
     public int getX() {
@@ -57,6 +67,15 @@ public abstract class Unit implements Step {
     public Coordinate getCoordinate() {
         return coordinate;
     }
+    public Coordinate getCoordinate(int x, int y){
+        this.x = x;
+        this.y = y;
+        return coordinate(this.x,this.y);
+    }
+
+    private Coordinate coordinate(int x, int y) {
+        return null;
+    }
 
     public Unit(String name, int x, int y, int initiative, int health, int strength, int recovery, int protection, int intelligence, int vitality, int damage){
         this.name = name;
@@ -71,7 +90,7 @@ public abstract class Unit implements Step {
         this.protection = protection;
         this.x = x;
         this.y = y;
-        coordinate = new Coordinate(x,y);
+        coordinate = new Coordinate(this.getX(),this.getY());
     }
     public Unit(String name, int x, int y){
 
@@ -86,23 +105,27 @@ public abstract class Unit implements Step {
         return initiative;
     }
 
-    public Unit nearTarget(Unit hero, List<Unit> zlo) {
-        int distmin = 1000;
-        int dist = 0;
+    public Unit nearTarget(List<Unit> zlo) {
+        double distmin = 1000.0;
+        double dist = (double) 0;
         int minind = 0;
         Unit minindexhero = zlo.get(0);
 
         Coordinate distance = new Coordinate();
         for (int i = 0; i < zlo.size(); i++) {
-            dist = distance.distance(hero.getX(), hero.getY(), zlo.get(i).getX(), zlo.get(i).getY());
+            if (Dead(zlo.get(i))==true){
+                dist = distance.getDistamce((Unit) zlo);
 
-            if (distmin > dist){
-                distmin = dist;
-                minind = i;
-                minindexhero = zlo.get(minind);
+                if (distmin > dist ){
+                    distmin = dist;
+                    minind = i;
+                    minindexhero = zlo.get(minind);
 
+                }
+
+            }else {
+                zlo.remove(zlo.get(i));
             }
-
         }
         return minindexhero;
     }
@@ -129,7 +152,7 @@ public abstract class Unit implements Step {
 
 
     public String getInfo() {
-        return "Name: " + this.name + " Type: " + this.getClass().getSimpleName() + " Health: " + this.health + " из " + this.maxhealth;
+        return "Name: " + this.name + " Type: " + this.getClass().getSimpleName() + " Health: " + this.health + " из " + this.maxhealth + " x:" + getCoordinate().getXposition() + " y:" + getCoordinate().getYposition() + "\n";
 
     }
     public String getInfoCoord(){
@@ -152,6 +175,7 @@ public abstract class Unit implements Step {
             damage = damage - protection;
             if (this.health - damage > 0) {
                 this.health -= damage;
+                System.out.println("Персонаж " + this.getInfo() + " получил " + damage + " урона ");
             } else {
                 this.health = 0;
                 System.out.println("Персонаж " + this.name + " умер");
@@ -159,6 +183,8 @@ public abstract class Unit implements Step {
         }
     }
     public void Attack(Unit target){
+        System.out.printf("%s Атакует персонажа:  %s \n", Unit.this.getInfo(), target.getInfo());
+
             target.GetDamage(this.damage);
         }
 
@@ -178,12 +204,12 @@ public abstract class Unit implements Step {
         if (this.getHealth() <= 0){
             System.out.printf("%s dead.", target.getName());
             return false;
-        }else {
-            System.out.printf("%s if life left %d, protection left %d",
-                    target.getName(), target.getHealth(),target.getProtection());
-        }
-        return true;
+
+    }else{        return true;}}
+
+
+    @Override
+    public void Step(ArrayList<Unit> targetTeam) {
+
     }
-
-
 }

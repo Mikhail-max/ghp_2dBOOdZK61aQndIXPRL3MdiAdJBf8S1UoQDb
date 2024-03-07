@@ -13,6 +13,10 @@ public abstract class Unit implements Step {
     int x;
     int y;
 
+    public Unit() {
+
+    }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -109,12 +113,13 @@ public abstract class Unit implements Step {
         double distmin = 1000.0;
         double dist = (double) 0;
         int minind = 0;
-        Unit minindexhero = zlo.get(0);
+        Unit minindexhero = new Unit() {
+        };
 
         Coordinate distance = new Coordinate();
         for (int i = 0; i < zlo.size(); i++) {
-            if (Dead(zlo.get(i))==true){
-                dist = distance.getDistamce((Unit) zlo);
+            if (Dead(zlo.get(i))){
+                dist = distance.distance(this.getX(), this.getY(), zlo.get(i).getX(), zlo.get(i).getY());
 
                 if (distmin > dist ){
                     distmin = dist;
@@ -127,6 +132,8 @@ public abstract class Unit implements Step {
                 zlo.remove(zlo.get(i));
             }
         }
+        distmin = 1000.0;
+        dist = (double) 0;
         return minindexhero;
     }
     /*public String nearTarget(ArrayList<Unit> targetTeam){
@@ -182,11 +189,15 @@ public abstract class Unit implements Step {
             }
         }
     }
-    public void Attack(Unit target){
-        System.out.printf("%s Атакует персонажа:  %s \n", Unit.this.getInfo(), target.getInfo());
+    public void Attack(Unit target) {
+        if (!Dead(Unit.this)) {
+            System.out.println(Unit.this.getInfo() + " Мертв ");
+        } else {
+            System.out.printf("%s Атакует персонажа:  %s \n", Unit.this.getInfo(), target.getInfo());
 
             target.GetDamage(this.damage);
         }
+    }
 
 
     public void GetHeal(int damage){

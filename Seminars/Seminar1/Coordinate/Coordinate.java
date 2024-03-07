@@ -40,8 +40,8 @@ public class Coordinate {
     }
     public Double getDistamce(Unit target){
         double targetDistance = 0;
-        return targetDistance = Math.sqrt(Math.pow(target.getCoordinate().getXposition() - this.getXposition(), 2))
-                + Math.pow(target.getCoordinate().getYposition() - this.getXposition(), 2);
+        return targetDistance = Math.sqrt(Math.pow(target.getX() - this.getXposition(), 2)
+                + Math.pow(target.getY() - this.getYposition(), 2));
 
     }
     public Coordinate getDiff (Coordinate targetPos){

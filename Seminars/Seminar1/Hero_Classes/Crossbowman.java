@@ -18,19 +18,21 @@ public class Crossbowman extends Unit implements Step {
 
     @Override
     public void Step(ArrayList<Unit> targetTeam) {
-        if (Dead(Crossbowman.this) == true) {
-            if (Crossbowman.this.getArrows() > 0) {
-                Crossbowman.this.Attack(this.nearTarget(targetTeam));
-                this.arrows -= 1;
-                Crossbowman.this.setArrows(this.arrows);
-                System.out.printf("Cтрел осталось %d\n", getArrows());
-            } else {
-                System.out.println("Нет стрел\n");
-            }
+        if (Dead(Crossbowman.this)){
+            if (Dead(nearTarget(targetTeam))){
+                if(Crossbowman.this.getArrows() > 0 ){
+                    Crossbowman.this.Attack(nearTarget(targetTeam));
+                    this.arrows -= 1;
+                    Crossbowman.this.setArrows(this.arrows);
+                    System.out.printf("Cтрел осталось %d\n", getArrows());
+                }else{
+                    System.out.println("Нет стрел\n");
+                }
+            }else {targetTeam.remove(nearTarget(targetTeam));}
         }
 
-    }
 
+    }
 
 
 

@@ -35,15 +35,17 @@ public class Sniper  extends Unit implements Step {
 
     @Override
     public void Step(ArrayList<Unit> targetTeam) {
-        if (Dead(Sniper.this)==true){
-            if(Sniper.this.getArrows() > 0 ){
-                Sniper.this.Attack(this.nearTarget(targetTeam));
-                this.arrows -= 1;
-                Sniper.this.setArrows(this.arrows);
-                System.out.printf("Cтрел осталось %d\n", getArrows());
-            }else{
-                System.out.println("Нет стрел\n");
-            }
+        if (Dead(Sniper.this)){
+            if (Dead(nearTarget(targetTeam))){
+                if(Sniper.this.getArrows() > 0 ){
+                    Sniper.this.Attack(nearTarget(targetTeam));
+                    this.arrows -= 1;
+                    Sniper.this.setArrows(this.arrows);
+                    System.out.printf("Cтрел осталось %d\n", getArrows());
+                }else{
+                    System.out.println("Нет стрел\n");
+                }
+            }else {targetTeam.remove(nearTarget(targetTeam));}
         }
 
 

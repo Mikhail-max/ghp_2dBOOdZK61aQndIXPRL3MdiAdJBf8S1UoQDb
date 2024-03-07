@@ -38,14 +38,14 @@ public class Warriors extends Unit implements Step {
                 System.out.println(Warriors.this.getInfo() + " Лечится ");
             }else{
                 if (Math.abs(diff.getXposition()) > Math.abs(diff.getYposition())){
-                    if (diff.getXposition() < Math.abs(diff.getXposition())){
+                    if (diff.getXposition() < 0){
                         if (targetTeam.contains(getCoordinate(getX()+1,getY()))){
                             return;
                         }else {
                             this.coordinate.setX(getX() + 1);
                         }
                     }else {
-                        if (diff.getXposition() == Math.abs(diff.getXposition())){
+                        if (diff.getXposition() > 0){
                             if (targetTeam.contains(getCoordinate(getX()-1,getY()))){
                                 return;
                             }else {
@@ -55,14 +55,14 @@ public class Warriors extends Unit implements Step {
                     }
 
                 }else{
-                    if (diff.getYposition() < Math.abs(diff.getYposition())){
+                    if (diff.getYposition() < 0){
                         if (targetTeam.contains(getCoordinate(getX(),getY()+1))){
                             return;
                         }else {
                             this.coordinate.setY(getY() + 1);
                         }
                     }else {
-                        if (diff.getYposition() == Math.abs(diff.getYposition())){
+                        if (diff.getYposition() > 0){
                             if (targetTeam.contains(getCoordinate(getX(),getY()-1))){
                                 return;
                             }else {

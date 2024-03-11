@@ -11,6 +11,8 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
+        int countzlo = 0;
+        int countdobro = 0;
         Scanner scanner = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
         System.out.println("Введите количество игроков в каждой команде: ");
@@ -21,13 +23,6 @@ public class Main {
         while(true){
             AllteamGenerate(dobro, zlo);
             View.view();
-            input.nextLine();
-            for (Unit human:allteam){
-                if (dobro.contains(human)) human.Step(zlo);
-                else human.Step(dobro);
-            }
-            int countzlo = 0;
-            int countdobro = 0;
             for (Unit zlodey:zlo){
                 if (zlodey.getHealth() > 0){
                     countzlo++;
@@ -48,6 +43,14 @@ public class Main {
                 System.out.println("Зло победило");
                 break;
             }
+            input.nextLine();
+            for (Unit human:allteam){
+                if (dobro.contains(human)) human.Step(zlo);
+                else human.Step(dobro);
+            }
+            countzlo = 0;
+            countdobro = 0;
+
 
 
         }

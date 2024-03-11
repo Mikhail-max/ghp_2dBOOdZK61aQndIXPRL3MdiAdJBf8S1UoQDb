@@ -15,7 +15,7 @@ public class Sniper  extends Unit implements Step {
         super(name, x, y, initiative, health, strength, recovery, protection, intelligence, vitality, damage);}
     public Sniper (String name, int x, int y) {
             super(name, x, y, 3,50, 20, 20, 15, 15, 20, 40);
-        this.arrows = 5;
+        this.arrows = 500;
     }
     public void aim() {
         System.out.println(this.name + " is aiming the sniper rifle.");
@@ -35,17 +35,17 @@ public class Sniper  extends Unit implements Step {
 
     @Override
     public void Step(ArrayList<Unit> targetTeam) {
-        if (Dead(Sniper.this)){
+
             if (Dead(nearTarget(targetTeam))){
                 if(Sniper.this.getArrows() > 0 ){
                     Sniper.this.Attack(nearTarget(targetTeam));
                     this.arrows -= 1;
                     Sniper.this.setArrows(this.arrows);
-                    System.out.printf("Cтрел осталось %d\n", getArrows());
+                  /*  System.out.printf("Cтрел осталось %d\n", getArrows());*/
                 }else{
-                    System.out.println("Нет стрел\n");
+                   /* System.out.println("Нет стрел\n");*/
                 }
-            }else {targetTeam.remove(nearTarget(targetTeam));}
+
         }
 
 

@@ -1,9 +1,8 @@
 package Seminar1.Coordinate;
 
 import Seminar1.Hero_Classes.Unit;
-import Seminar1.Main;
 
-import javax.swing.text.Position;
+import java.util.ArrayList;
 
 public class Coordinate {
     int x,y;
@@ -23,6 +22,8 @@ public class Coordinate {
     public int getYposition() {
         return y;
     }
+
+
 
     public Coordinate(int x, int y){
         this.x = x;

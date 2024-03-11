@@ -76,6 +76,16 @@ public abstract class Unit implements Step {
         this.y = y;
         return coordinate(this.x,this.y);
     }
+    public ArrayList<Integer> getCoordinateMass(){
+        this.x = x;
+        this.y = y;
+        ArrayList<Integer> coord = new ArrayList<>();
+        coord.add(x);
+        coord.add(y);
+        return coord;
+
+
+    }
 
     private Coordinate coordinate(int x, int y) {
         return null;
@@ -115,22 +125,25 @@ public abstract class Unit implements Step {
         int minind = 0;
         Unit minindexhero = new Unit() {
         };
+        ArrayList<Unit> zlo2 = new ArrayList<>();
+        for (Unit element:zlo){
+            if (element.getHealth() > 0){
+                zlo2.add(element);
+            }
+        }
 
         Coordinate distance = new Coordinate();
-        for (int i = 0; i < zlo.size(); i++) {
-            if (Dead(zlo.get(i))){
-                dist = distance.distance(this.getX(), this.getY(), zlo.get(i).getX(), zlo.get(i).getY());
+        for (int i = 0; i < zlo2.size(); i++) {
+                dist = distance.distance(this.getX(), this.getY(), zlo2.get(i).getX(), zlo2.get(i).getY());
 
                 if (distmin > dist ){
                     distmin = dist;
                     minind = i;
-                    minindexhero = zlo.get(minind);
+                    minindexhero = zlo2.get(minind);
 
                 }
 
-            }else {
-                zlo.remove(zlo.get(i));
-            }
+
         }
         distmin = 1000.0;
         dist = (double) 0;
@@ -159,7 +172,7 @@ public abstract class Unit implements Step {
 
 
     public String getInfo() {
-        return "Name: " + this.name + " Type: " + this.getClass().getSimpleName() + " Health: " + this.health + " из " + this.maxhealth + " x:" + getCoordinate().getXposition() + " y:" + getCoordinate().getYposition() + "\n";
+        return this.getClass().getSimpleName() + "Name: " + this.name  + " Health: " + this.health + " из " + this.maxhealth + " x:" + getCoordinate().getXposition() + " y:" + getCoordinate().getYposition();
 
     }
     public String getInfoCoord(){
@@ -171,9 +184,10 @@ public abstract class Unit implements Step {
     }
     @Override
     public String toString() {
-        return "Name: " + this.name + " Type: " + this.getClass().getSimpleName() + " Health: " + this.health + " из " + this.maxhealth + " x " + getX() + " y " + getY() + " inititacive " + getInitiative() +  " strength: " + this.strength + " recovery: "
-                + this.recovery + " vitality: " + this.vitality + " intelligence: " + this.intelligence
-                + " damage: " + this.damage + " protection: " + this.protection;
+        return "Name: " + this.name + " Type: " + this.getClass().getSimpleName() +
+                " Health: " + this.health + " из " + this.maxhealth +
+                " x:" + getCoordinate().getXposition() +
+                " y:" + getCoordinate().getYposition();
 
     }
 
@@ -182,18 +196,18 @@ public abstract class Unit implements Step {
             damage = damage - protection;
             if (this.health - damage > 0) {
                 this.health -= damage;
-                System.out.println("Персонаж " + this.getInfo() + " получил " + damage + " урона ");
+                /*System.out.println("Персонаж " + this.getInfo() + " получил " + damage + " урона ");*/
             } else {
                 this.health = 0;
-                System.out.println("Персонаж " + this.name + " умер");
+               /* System.out.println("Персонаж " + this.name + " умер");*/
             }
         }
     }
     public void Attack(Unit target) {
         if (!Dead(Unit.this)) {
-            System.out.println(Unit.this.getInfo() + " Мертв ");
+            /*System.out.println(Unit.this.getInfo() + " Мертв ");*/
         } else {
-            System.out.printf("%s Атакует персонажа:  %s \n", Unit.this.getInfo(), target.getInfo());
+           /* System.out.printf("%s Атакует персонажа:  %s \n", Unit.this.getInfo(), target.getInfo());*/
 
             target.GetDamage(this.damage);
         }
@@ -213,7 +227,7 @@ public abstract class Unit implements Step {
     }
     public boolean Dead(Unit target){
         if (this.getHealth() <= 0){
-            System.out.printf("%s dead.", target.getName());
+            /*System.out.printf("%s dead.", target.getName());*/
             return false;
 
     }else{        return true;}}

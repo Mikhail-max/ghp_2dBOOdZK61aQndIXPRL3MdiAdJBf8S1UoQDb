@@ -13,7 +13,7 @@ public class Crossbowman extends Unit implements Step {
 
     public Crossbowman(String name, int x, int y){
             super(name, x, y, 3,80, 20, 20, 1, 3, 20, 40);
-        this.arrows = 5;
+        this.arrows = 500;
     }
 
     @Override
@@ -24,9 +24,9 @@ public class Crossbowman extends Unit implements Step {
                     Crossbowman.this.Attack(nearTarget(targetTeam));
                     this.arrows -= 1;
                     Crossbowman.this.setArrows(this.arrows);
-                    System.out.printf("Cтрел осталось %d\n", getArrows());
+                    /*System.out.printf("Cтрел осталось %d\n", getArrows());*/
                 }else{
-                    System.out.println("Нет стрел\n");
+                    /*System.out.println("Нет стрел\n");*/
                 }
             }else {targetTeam.remove(nearTarget(targetTeam));}
         }

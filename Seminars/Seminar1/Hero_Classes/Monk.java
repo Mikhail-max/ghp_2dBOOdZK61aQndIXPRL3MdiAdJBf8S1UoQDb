@@ -14,7 +14,7 @@ public class Monk extends Warriors  implements Step {
             super(name, x, y, 2,35, 30, 2, 5, 3, 20, 50);
     }
 
-    @Override
+    /*@Override
     public void Step(ArrayList<Unit> targetTeam) {
         if (!Dead(Monk.this)) {
             System.out.println(Monk.this.getInfo() + " Мертв ");
@@ -73,7 +73,7 @@ public class Monk extends Warriors  implements Step {
 
 
         }
-    }
+    }*/
 
 
 

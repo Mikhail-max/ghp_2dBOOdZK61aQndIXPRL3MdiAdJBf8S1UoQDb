@@ -21,6 +21,7 @@ public class Magician extends Unit{
 
     public Magician (String name, int x, int y) {
             super(name, x, y,1, 60, 20, 20, 1, 40, 20, 40);
+            this.magarrows = 500;
     }
 
 
@@ -41,9 +42,9 @@ public class Magician extends Unit{
                     Magician.this.Attack(nearTarget(targetTeam));
                     this.magarrows -= 1;
                     Magician.this.setMagarrows(this.magarrows);
-                    System.out.printf("Cтрел осталось %d\n", getMagarrows());
+                  /*  System.out.printf("Cтрел осталось %d\n", getMagarrows());*/
                 }else{
-                    System.out.println("Нет стрел\n");
+                   /* System.out.println("Нет стрел\n");*/
                 }
             }else {targetTeam.remove(nearTarget(targetTeam));}
         }

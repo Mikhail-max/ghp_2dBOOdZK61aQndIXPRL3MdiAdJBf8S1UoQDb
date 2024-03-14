@@ -50,7 +50,7 @@ public class Magician extends Unit{
                             deathHero.add(element);}}
                     if (deathHero.size() >= 3) {
                         FindUnitDeath(FindTeam(Magician.this)).setHealth(getMaxhealth());
-                        mana = 0;
+                        this.setMana(0);
                     }
                     }
                 if (Magician.this.getMana() > 1){
@@ -67,6 +67,7 @@ public class Magician extends Unit{
                         }
                     }
                     heroo.setHealth(heroo.getHealth() + 10);
+                    this.setMana(this.getMana() - 2);
                 }else {
                     this.setMana(this.getMana() + 1);
                 }

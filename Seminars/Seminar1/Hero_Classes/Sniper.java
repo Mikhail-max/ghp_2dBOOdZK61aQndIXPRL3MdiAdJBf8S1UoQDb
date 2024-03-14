@@ -4,7 +4,7 @@ import Seminar1.Interface.Step;
 
 import java.util.ArrayList;
 
-public class Sniper  extends Unit implements Step {
+public class Sniper  extends Archers implements Step {
     protected int arrows;
 
     public int getArrows() {
@@ -33,22 +33,6 @@ public class Sniper  extends Unit implements Step {
 
 
 
-    @Override
-    public void Step(ArrayList<Unit> targetTeam) {
 
-            if (Dead(nearTarget(targetTeam))){
-                if(Sniper.this.getArrows() > 0 ){
-                    Sniper.this.Attack(nearTarget(targetTeam));
-                    this.arrows -= 1;
-                    Sniper.this.setArrows(this.arrows);
-                  /*  System.out.printf("Cтрел осталось %d\n", getArrows());*/
-                }else{
-                   /* System.out.println("Нет стрел\n");*/
-                }
-
-        }
-
-
-    }
 
 }

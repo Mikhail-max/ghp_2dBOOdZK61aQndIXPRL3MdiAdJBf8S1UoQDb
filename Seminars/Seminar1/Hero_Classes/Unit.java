@@ -6,6 +6,8 @@ import Seminar1.Interface.Step;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Seminar1.Main.*;
+
 public abstract class Unit implements Step {
     protected int health, maxhealth, strength, recovery, vitality, intelligence, damage, protection;
     protected String name;
@@ -169,11 +171,27 @@ public abstract class Unit implements Step {
     }*/
 
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
+    public void setMaxhealth(int maxhealth) {
+        this.maxhealth = maxhealth;
+    }
 
     public String getInfo() {
-        return this.getClass().getSimpleName() + "Name: " + this.name  + " Health: " + this.health + " из " + this.maxhealth + " x:" + getCoordinate().getXposition() + " y:" + getCoordinate().getYposition();
+        return this.getClass().getSimpleName() + " Name: " + this.name  + " Health: " + this.health + " из " + this.maxhealth + " x:" + this.getX() + " y:" + this.getY();
 
+    }
+    public ArrayList<Unit> FindTeam(Unit hero){
+        for (Unit element:allteam){
+            if (dobro.contains(element)){
+                return dobro;
+            }else {
+                return zlo;
+            }
+        }
+        return null;
     }
     public String getInfoCoord(){
 //        int x = 0;
@@ -186,8 +204,8 @@ public abstract class Unit implements Step {
     public String toString() {
         return "Name: " + this.name + " Type: " + this.getClass().getSimpleName() +
                 " Health: " + this.health + " из " + this.maxhealth +
-                " x:" + getCoordinate().getXposition() +
-                " y:" + getCoordinate().getYposition();
+                " x:" + this.getX() +
+                " y:" + this.getY();
 
     }
 

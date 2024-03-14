@@ -99,6 +99,7 @@ public class Main {
     private static void generateHeroesDobro(int count) {
 
 
+
         for ( int i = 1; i < count+1; i++ ) {
             int x;
 

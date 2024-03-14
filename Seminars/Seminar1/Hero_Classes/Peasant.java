@@ -21,8 +21,5 @@ public class Peasant extends Warriors implements Step {
         System.out.println(this.name + " is harvesting the crops.");
     }
 
-    @Override
-    public void Step(ArrayList<Unit> targetTeam) {
-        super.Step(targetTeam);
-    }
+
 }
